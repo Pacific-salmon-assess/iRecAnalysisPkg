@@ -8,7 +8,7 @@ Authors@R:
            email = "nicholas.komick@dfo-mpo.gc.ca",
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: This package is used the analyse the results of the Internet Recreational
-Catch and Effort reporting data (iRec) 
+  Catch and Effort reporting data (iRec) 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
