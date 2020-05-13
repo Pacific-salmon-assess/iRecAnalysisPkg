@@ -27,5 +27,4 @@ Imports: stringr,
          magrittr,
          readr,
          tidyr,
-         askpass,
-         ROracle
+         askpass

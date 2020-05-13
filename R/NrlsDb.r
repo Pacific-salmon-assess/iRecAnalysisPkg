@@ -11,8 +11,7 @@
 #' @return An ROracle connection
 #'
 #' @importFrom glue glue
-#' @importFrom ROracle dbGetQuery dbConnect
-#' @importFrom DBI dbDriver
+#' @importFrom DBI dbDriver dbGetQuery dbConnect
 #' @importFrom askpass askpass
 #'
 setupNrlsConn <- function(db_user_name, db_conn_text, db_pass = NULL) {
