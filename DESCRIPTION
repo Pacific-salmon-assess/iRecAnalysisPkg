@@ -1,0 +1,31 @@
+Package: iRecAnalysisPkg
+Title: Internet Recreational Catch Reporting Analysis Package
+Version: 1.0.0
+Authors@R: 
+    person(given = "Nicholas",
+           family = "Komick",
+           role = c("aut", "cre"),
+           email = "nicholas.komick@dfo-mpo.gc.ca",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: This package is used the analyse the results of the Internet Recreational
+Catch and Effort reporting data (iRec) 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
+Imports: stringr, 
+         openxlsx, 
+         lubridate, 
+         haven,
+         dplyr,
+         purrr,
+         fs,
+         yaml,
+         glue,
+         shiny,
+         magrittr,
+         readr,
+         tidyr,
+         askpass,
+         ROracle
