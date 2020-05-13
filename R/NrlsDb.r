@@ -15,7 +15,7 @@
 #' @importFrom askpass askpass
 #'
 setupNrlsConn <- function(db_user_name, db_conn_text, db_pass = NULL) {
-  db_driver <- DBI::dbDriver("Oracle")
+  db_driver <- dbDriver("Oracle")
   print(glue("Connecting to NRLS DB: {db_conn_text}"))
 
   if (is.null(db_pass)) {
