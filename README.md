@@ -9,11 +9,11 @@ The goal of iRecAnalysisPkg is to analyse the results of catch reporting from th
 
 ## Installation
 
-You can install the released version of iRecAnalysisPkg from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of iRecAnalysisPkg from [GitHub](https://github.com/nick-komick/iRecAnalysisPkg) with:
 
 ``` r
 install.packages("remotes")
-remotes::install_git("...")
+remotes::install_git("https://github.com/nick-komick/iRecAnalysisPkg.git")
 ```
 
 ## Example
