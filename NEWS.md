@@ -1,3 +1,8 @@
+# iRecAnalysisPkg 1.0.1
+
+* Add alias for getTimeStampText() that provides warning to update the function call
+* Add parameter to specify the port for the shiny server with `runUI()` call
+
 # iRecAnalysisPkg 1.0.0
 
 * Initial release of the updated iRec Analysis Package

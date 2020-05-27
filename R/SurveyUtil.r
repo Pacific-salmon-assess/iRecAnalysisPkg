@@ -51,6 +51,17 @@ getTimeStampText <- function() {
   return(format(current_time, "%Y%m%d_%H%M%S"))
 }
 
+#' Get Time Stamp Text
+#'
+#' (Deprecated) Provides a standardized text based time stamp for inclusion in file names
+#'
+#' @return A string with the current date and time
+#'
+GetTimeStampText <- function() {
+  cat("WARNING - Call to \"GetTimeStampText()\" should be updated to \"getTimeStampText()\"")
+  return(getTimeStampText())
+}
+
 #' Get Month End Date
 #'
 #' A helper function for getting the end date for the month of the date provided

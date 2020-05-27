@@ -4,11 +4,13 @@
 \alias{runUI}
 \title{Run iRecAnalysis User Interface}
 \usage{
-runUI(analysis_dir)
+runUI(analysis_dir, port = 9001)
 }
 \arguments{
 \item{analysis_dir}{Directory where iRec analysis is maintained}
+
+\item{port}{Port number to run shiny server on}
 }
 \description{
-TODO
+Start a shiny server with the user interface for the iRecAnalysis package
 }

@@ -178,21 +178,22 @@ runAnnualAnalysis <- function(lic_year, irec_dir_root = getiRecAnalysisDir()) {
 
 #' Run iRecAnalysis User Interface
 #'
-#' TODO
+#' Start a shiny server with the user interface for the iRecAnalysis package
 #'
 #' @param analysis_dir Directory where iRec analysis is maintained
+#' @param port Port number to run shiny server on
 #'
 #' @export
 #'
 #' @import shiny
 #' @importFrom utils packageName
 #'
-runUI <- function(analysis_dir) {
+runUI <- function(analysis_dir, port = 9001) {
   setiRecAnalysisDir(analysis_dir)
   appDir <- system.file("shinyApp", package = packageName())
   if (appDir == "") {
     stop(glue("Could not find example directory. Try re-installing `{packageName()}`."), call. = FALSE)
   }
 
-  shiny::runApp(appDir, display.mode = "normal")
+  shiny::runApp(appDir, display.mode = "normal", port = port)
 }
