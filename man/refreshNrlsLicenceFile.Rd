@@ -7,7 +7,8 @@
 refreshNrlsLicenceFile(
   lic_year,
   config = NULL,
-  irec_dir_root = getiRecAnalysisDir()
+  irec_dir_root = getiRecAnalysisDir(),
+  password = NULL
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ refreshNrlsLicenceFile(
 \item{config}{Licence year configuration list}
 
 \item{irec_dir_root}{Root directory that contains iRec Analysis}
+
+\item{password}{The password used to connect with the NRLS database}
 }
 \value{
 File name that was refreshed

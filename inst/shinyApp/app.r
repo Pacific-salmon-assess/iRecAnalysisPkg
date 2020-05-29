@@ -16,6 +16,7 @@ ui <- fluidPage(
     selectInput('lic_year',
                 'Licence Year',
                 LicYears),
+    textInput("nrls_pw", "NRLS Password", ""),
     actionButton(inputId = "annual_analysis",
                  label = "Run Annual Analysis"),
     actionButton(inputId = "refresh_licences",
@@ -100,7 +101,8 @@ server <- function(input, output) {
 
   refresh_nrls_lic_func <- eventReactive(input$refresh_licences, {
     lic_year <- as.integer(str_sub(input$lic_year,1,4))
-    result <- iRecAnalysisPkg::refreshNrlsLicenceFile(lic_year)
+    result <- iRecAnalysisPkg::refreshNrlsLicenceFile(lic_year,
+                                                      password = input$nrls_pw)
     return(result)
   })
 

@@ -83,6 +83,7 @@ getNrlsLicences <- function(db_conn, lic_year) {
 #' @param lic_year Licence year to refresh licence records for
 #' @param config Licence year configuration list
 #' @param irec_dir_root Root directory that contains iRec Analysis
+#' @param password The password used to connect with the NRLS database
 #'
 #' @return File name that was refreshed
 #'
@@ -94,7 +95,8 @@ getNrlsLicences <- function(db_conn, lic_year) {
 refreshNrlsLicenceFile <-
   function(lic_year,
            config = NULL,
-           irec_dir_root = getiRecAnalysisDir()) {
+           irec_dir_root = getiRecAnalysisDir(),
+           password = NULL) {
     if (is.null(config)) {
       config <-
         loadAnalysisYearConfig(lic_year, irec_dir_root = irec_dir_root)
@@ -115,7 +117,7 @@ refreshNrlsLicenceFile <-
 
     print("Connecting to NRLS Database")
     db_conn <-
-      setupNrlsConn(config$nrls_user_name, config$nrls_db_conn)
+      setupNrlsConn(config$nrls_user_name, config$nrls_db_conn, password)
 
     print(glue("Retrieving to NRLS Licence records for {lic_year}"))
     lic_df <- getNrlsLicences(db_conn, lic_year)
@@ -134,8 +136,10 @@ refreshNrlsLicenceFile <-
       if (length(missing_lic_id)) {
         error_msg <-
           glue(
-            "{length(missing_lic_id)} licence ids are missing: \n",
-            getTruncText(missing_lic_id)
+            "{length(missing_lic_id)} licence ids are missing:",
+            getTruncText(missing_lic_id),
+            "To fix this issue you need to remove the previous licence file.",
+            .sep = "\n"
           )
         stop(error_msg)
       }
