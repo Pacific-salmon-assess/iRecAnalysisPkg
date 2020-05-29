@@ -400,7 +400,8 @@ loadPraSurveyResults <- function(survey_result_filename,
       "fishedwithguide",
       "totaljuveniles",
       "checkprawns",
-      "checkcrabs") %>%
+      "checkcrabs",
+      "checkcrabsprawns") %>%
     intersect(colnames(survey_result))
 
   survey_result <-
@@ -523,7 +524,8 @@ loadPraSurveyResults <- function(survey_result_filename,
       "lodge",
       "guided",
       "checkcrabs",
-      "checkprawns") %>%
+      "checkprawns",
+      "checkcrabsprawns") %>%
     intersect(colnames(survey_result))
 
   #Catch columns are all columns that are not stratafication fields
@@ -536,7 +538,7 @@ loadPraSurveyResults <- function(survey_result_filename,
     mutate_if(is.double,coalesce, 0)
 
   factor_to_char_col <-
-    c("lodge", "guided", "checkcrabs", "checkprawns") %>%
+    c("lodge", "guided", "checkcrabs", "checkprawns", "checkcrabsprawns") %>%
     base::intersect(colnames(survey_result))
 
   survey_result_strata <-

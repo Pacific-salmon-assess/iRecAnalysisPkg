@@ -47,7 +47,8 @@ getNrlsPopSize <- function(elic_data, lic_id_col_name, lic_strata_col_names) {
 #' @importFrom purrr map2_dfc
 #'
 runInstSurveyAnalysis <- function(config, elic_data, stamp_stratify = FALSE) {
-  catch_strata_col_names <- c("area", "method", "lodge", "guided", "checkcrabs", "checkprawns")
+  catch_strata_col_names <- c("area", "method", "lodge", "guided",
+                              "checkcrabs", "checkprawns", "checkcrabsprawns")
   participate_id <- "survey_access_key"
 
   if (stamp_stratify) {
