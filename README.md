@@ -7,6 +7,8 @@
 
 The goal of iRecAnalysisPkg is to analyse the results of catch reporting from the internet survey of recreational licence holders.
 
+For the lastest notes on package modifications check the [NEWS Page](https://github.com/nick-komick/iRecAnalysisPkg/NEWS.md)
+
 ## Installation
 
 You can install the released version of iRecAnalysisPkg from [GitHub](https://github.com/nick-komick/iRecAnalysisPkg) with:
