@@ -1,4 +1,4 @@
-# iRecAnalysisPkg 1.0.1
+# iRecAnalysisPkg 1.0.2
 
 * Set R and Oracle driver time zones to the Pacific Time.
 * Fix misspelling in survey results "rrawn" -> "prawn"
