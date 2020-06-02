@@ -2,6 +2,7 @@
 
 * Set R and Oracle driver time zones to the Pacific Time.
 * Fix misspelling in survey results "rrawn" -> "prawn"
+* Show package version number in shiny UI (bottom left panel)
 
 # iRecAnalysisPkg 1.0.1
 

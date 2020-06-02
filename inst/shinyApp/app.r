@@ -11,7 +11,7 @@ LicYears <-
 
 
 ui <- fluidPage(
-  headerPanel('iRec Survey Processing Interface'),
+  titlePanel('iRec Survey Processing Interface'),
   sidebarPanel(
     selectInput('lic_year',
                 'Licence Year',
@@ -23,7 +23,7 @@ ui <- fluidPage(
                  label = "Retrieve NRLS Licences"),
     selectInput('month', 'Month',
                 c(month.name[4:12],month.name[1:3]),
-                selected = month.name[8]),
+                selected = month.name[4]),
     actionButton(inputId = "month_analysis",
                  label = "Run Month Analysis"),
     actionButton(inputId = "export",
@@ -31,7 +31,9 @@ ui <- fluidPage(
     tags$hr(),
     textInput("adj_lic_text", "Adjust Licence IDs", ""),
     actionButton(inputId = "create_adj",
-                 label = "Create Adjustment File")
+                 label = "Create Adjustment File"),
+    tags$hr(),
+    tags$p(glue('Version ', paste0(packageVersion("iRecAnalysisPkg"), collapse = ".")))
   ),
   mainPanel(
     tags$h2("Run Log"),
