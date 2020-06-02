@@ -351,6 +351,7 @@ loadEkosSurveyResults <- function(ekos_filename, exclude_lic_id) {
 #' @importFrom haven zap_labels as_factor is.labelled
 #' @importFrom dplyr everything mutate_if
 #' @importFrom haven read_spss
+#' @importFrom stringr str_replace
 #'
 loadPraSurveyResults <- function(survey_result_filename,
                                  exclude_id,
@@ -545,6 +546,13 @@ loadPraSurveyResults <- function(survey_result_filename,
     survey_result %>%
     select(strata_col_names) %>%
     mutate_at(factor_to_char_col, ~ coalesce(labelText(.), UnspecifiedText))
+
+  if("checkcrabsprawns" %in% factor_to_char_col) {
+    survey_result_strata <-
+      survey_result_strata %>%
+      mutate(checkcrabsprawns = str_replace(checkcrabsprawns, "rrawn", "prawn"))
+
+  }
 
   #ensure the order of the strata colums, important for column indexing later.
   survey_result <-
