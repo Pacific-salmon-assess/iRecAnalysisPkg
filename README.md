@@ -24,6 +24,7 @@ To open the user interface to carry out iRec Functions:
 
 ``` r
 library(iRecAnalysisPkg)
+library(ROracle) #Needed to access licence database
 runUI()
 ```
 
