@@ -351,7 +351,7 @@ loadEkosSurveyResults <- function(ekos_filename, exclude_lic_id) {
 #' @importFrom haven zap_labels as_factor is.labelled
 #' @importFrom dplyr everything mutate_if
 #' @importFrom haven read_spss
-#' @importFrom stringr str_replace
+#' @importFrom stringr str_replace_all
 #'
 loadPraSurveyResults <- function(survey_result_filename,
                                  exclude_id,
@@ -550,7 +550,7 @@ loadPraSurveyResults <- function(survey_result_filename,
   if("checkcrabsprawns" %in% factor_to_char_col) {
     survey_result_strata <-
       survey_result_strata %>%
-      mutate(checkcrabsprawns = str_replace(checkcrabsprawns, "rrawn", "prawn"))
+      mutate(checkcrabsprawns = str_replace_all(checkcrabsprawns, "rrawn", "prawn"))
 
   }
 
