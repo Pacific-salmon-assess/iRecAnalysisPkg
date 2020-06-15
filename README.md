@@ -18,7 +18,7 @@ install.packages("remotes")
 remotes::install_git("https://github.com/Pacific-salmon-assess/iRecAnalysisPkg.git")
 ```
 
-It is important to note that to retrieve licence data, you need to have `ROracle` package installed.  Because the CRAN version of this package is problematic to install directly, it is not a required package.  This allows for automated package testing through GitHub Actions.   However, if you want to retrieve the licence data (only within the DFO network) you must install the `ROracle` package directly from the Oracle website and also install the Oracle client software.
+It is important to note that to retrieve licence data (only on the DFO network), you need to have `ROracle` package installed.  Because the CRAN version of this package is problematic to install directly, it is not a required package.  This allows for automated package testing through GitHub Actions.   However, if you want to retrieve the licence data (only within the DFO network) you must install the `ROracle` package directly from the Oracle website and also install the Oracle client software.
 
 ## Example
 
