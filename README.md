@@ -15,7 +15,7 @@ You can install the released version of iRecAnalysisPkg from [GitHub](https://gi
 
 ``` r
 install.packages("remotes")
-remotes::install_git("https://github.com/nick-komick/iRecAnalysisPkg.git")
+remotes::install_git("https://github.com/Pacific-salmon-assess/iRecAnalysisPkg.git")
 ```
 
 ## Example
