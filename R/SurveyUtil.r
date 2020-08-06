@@ -328,6 +328,19 @@ loadAnalysisConfig <- function(lic_year,
 
   config$survey_data_path <- survey_data_path
 
+  if(is.null(config$period_stratify)) {
+    config$period_stratify <- FALSE
+  } else if (!is.logical(config$period_stratify)) {
+    stop(glue("Invalid period_stratify value ({config$period_stratify}), must be yes/no"))
+  }
+
+
+  if(!is.null(config$period_stratify_date)) {
+    config$period_stratify_date <- ymd(config$period_stratify_date)
+  } else {
+    config$period_stratify_date <- as.Date(NA)
+  }
+
   if (!is.null(config$analysis_pre_filename)) {
     config$analysis_pre_filename <-
       path(survey_data_path, config$analysis_pre_filename)

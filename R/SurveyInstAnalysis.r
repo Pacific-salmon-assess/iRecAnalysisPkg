@@ -35,7 +35,8 @@ getNrlsPopSize <- function(elic_data, lic_id_col_name, lic_strata_col_names) {
 
 #' Run Instantaniace selection survey analysis
 #'
-#' TODO
+#' Analyse the responses to the iRec survey based on instantaniace selection method
+#' integrated into the National Recreational Licence System (NRLS)
 #'
 #' @param config Configuration list
 #' @param elic_data Electronic licence data frame
@@ -54,6 +55,11 @@ runInstSurveyAnalysis <- function(config, elic_data, stamp_stratify = FALSE) {
   if (stamp_stratify) {
     LicStrataColNames <- c(LicStrataColNames, LicStampStrataColName)
   }
+
+  elic_data %<>%
+    addPurchasePeriod(config$survey_dates,
+                      config$period_stratify,
+                      config$period_stratify_date)
 
   pop_size <- getNrlsPopSize(elic_data, "licence_id", LicStrataColNames)
 

@@ -17,5 +17,6 @@ runInstSurveyAnalysis(config, elic_data, stamp_stratify = FALSE)
 list with survey analysis results
 }
 \description{
-TODO
+Analyse the responses to the iRec survey based on instantaniace selection method
+integrated into the National Recreational Licence System (NRLS)
 }

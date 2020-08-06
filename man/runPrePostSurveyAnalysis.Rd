@@ -12,7 +12,7 @@ runPrePostSurveyAnalysis(config, elic_data)
 \item{elic_data}{Electronic lience data}
 }
 \value{
-The list provided as data_list is returned (allows writing mulitple worksheets in a pipe)
+The list provided as data_list is returned (allows writing multiple worksheets in a pipe)
 }
 \description{
 Processes survey results based on the pre/post sampled licences

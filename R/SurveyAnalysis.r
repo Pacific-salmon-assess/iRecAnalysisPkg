@@ -120,7 +120,6 @@ runAnnualAnalysis <- function(lic_year, irec_dir_root = getiRecAnalysisDir()) {
     clearLogMessages()
 
     if (dir_exists(survey_path) == FALSE) {
-
       addLogMessages("WARNING: Survey data is missing from '{survey_path}'")
       return(list(log = getLogMessages()))
     }

@@ -1,3 +1,7 @@
+# iRecAnalysisPkg 1.1.0
+
+* Add option to stratify estimates by purchase period (e.g. in survey, pre survey, early season, late season)
+
 # iRecAnalysisPkg 1.0.2
 
 * Set R and Oracle driver time zones to the Pacific Time.

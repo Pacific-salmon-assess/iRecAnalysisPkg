@@ -1,6 +1,6 @@
 Package: iRecAnalysisPkg
 Title: Internet Recreational Catch Reporting Analysis Package
-Version: 1.0.2
+Version: 1.1.0
 Authors@R: 
     person(given = "Nicholas",
            family = "Komick",
@@ -13,7 +13,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Imports: stringr, 
          openxlsx, 
          lubridate, 

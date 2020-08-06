@@ -7,7 +7,7 @@
 #' @param config Survey configuration list
 #' @param elic_data Electronic lience data
 #'
-#' @return The list provided as data_list is returned (allows writing mulitple worksheets in a pipe)
+#' @return The list provided as data_list is returned (allows writing multiple worksheets in a pipe)
 #'
 #' @importFrom dplyr summarize_if group_by anti_join transmute
 #'
@@ -39,7 +39,7 @@ runPrePostSurveyAnalysis <- function(config, elic_data) {
     pull(month_total)
 
   if (length(non_resident_split) > 0 && non_resident_split > 0) {
-    #The vendor sales data is not split into Adult/Senior, so all Adult and Senior non-resdient
+    #The vendor sales data is not split into Adult/Senior, so all Adult and Senior non-resident
     #licences need to be grouped into a combined Adult/Senior non-resident licence category
     addLogMessages("WARNING - Vendor sales group adult and senior non-resident license, so survey results are similarly grouped")
     elic_data <-

@@ -1,5 +1,10 @@
+PurPeriodInSurvey <- "In Survey"
+PurPeriodPreSurvey <- "Pre-Survey"
+PurPeriodEarlySeason <- "Early Season"
+PurPeriodLateSeason <- "Late Season"
+PurPeriodNotSpec <- "Not Specified"
 
-LicStrataColNames <- c("resident_status", "licence_type", "age_category")
+LicStrataColNames <- c("resident_status", "licence_type", "age_category", "purchase_period")
 LicStampStrataColName <- "stamp"
 
 
@@ -39,6 +44,56 @@ addDrawType <- function(licence_data, survey_dates) {
 
   return (licence_data)
 }
+
+#' Add Purchase Periods to licence records (e.g. In-Survey, Pre-Survey, Early-Season, and Late-Season)
+#'
+#' Adds the purchase period identifiers to each licence record based on the if period stratification is
+#' enabled (TRUE) and identify early/late season licences based on the period stratification date
+#'
+#' @param licence_data Data frame of licences
+#' @param survey_dates Electronic licences data, including specifics of each licence
+#' @param period_stratify Boolean identifying if period stratification is enabled
+#' @param period_stratify_date If splitting into early/late season, this identifies date of split
+#'
+#' @return The licence data frame with an additional draw_type column
+#'
+addPurchasePeriod <- function(licence_data, survey_dates, period_stratify, period_stratify_date = NA) {
+  if (period_stratify) {
+
+    licence_data <-
+      licence_data %>%
+      mutate(purchase_period = if_else(annual_flag &
+                                         start_date >= survey_dates[1] &
+                                         start_date < survey_dates[2],
+                                       PurPeriodInSurvey,
+                                       NA_character_),
+             purchase_period = if_else(annual_flag &
+                                         is.na(purchase_period) &
+                                         is.na(period_stratify_date),
+                                       PurPeriodPreSurvey,
+                                       purchase_period),
+             purchase_period = if_else(annual_flag &
+                                         is.na(purchase_period) &
+                                         !is.na(period_stratify_date) &
+                                         start_date < period_stratify_date,
+                                       PurPeriodEarlySeason,
+                                       purchase_period),
+             purchase_period = if_else(annual_flag &
+                                         is.na(purchase_period) &
+                                         !is.na(period_stratify_date) &
+                                         start_date >= period_stratify_date,
+                                       PurPeriodLateSeason,
+                                       purchase_period),
+             purchase_period = coalesce(purchase_period, PurPeriodNotSpec))
+  } else {
+    licence_data <-
+      licence_data %>%
+      mutate(purchase_period = PurPeriodNotSpec)
+  }
+
+  return (licence_data)
+}
+
 
 #' Merge Electronic Licence Survey Data
 #'
