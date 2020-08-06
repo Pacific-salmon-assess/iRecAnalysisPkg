@@ -2,8 +2,7 @@
 % Please edit documentation in R/CreateSurveyAdjFile.r
 \name{parseLicenceIds}
 \alias{parseLicenceIds}
-\title{Parse user provided licence ID text based on
-comma or space delimited list of Licence IDs}
+\title{Parse Licence IDs}
 \usage{
 parseLicenceIds(licence_id_txt)
 }
@@ -14,6 +13,6 @@ parseLicenceIds(licence_id_txt)
 character vector of unique licences IDs or an empty vector if on were provided
 }
 \description{
-Parse user provided licence ID text based on
+Parse user provided licence ID text based on a
 comma or space delimited list of Licence IDs
 }

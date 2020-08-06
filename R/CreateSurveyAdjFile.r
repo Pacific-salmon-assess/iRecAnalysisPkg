@@ -1,5 +1,7 @@
 
-#' Parse user provided licence ID text based on
+#' Parse Licence IDs
+#'
+#' Parse user provided licence ID text based on a
 #' comma or space delimited list of Licence IDs
 #'
 #' @param licence_id_txt Text of licence IDs to parse
@@ -31,7 +33,8 @@ parseLicenceIds <- function(licence_id_txt) {
 
 #' Create Adjustment File
 #'
-#' Create an adjustment file based on specific licence ids
+#' Create an adjustment file based on specific licence ids and the format of
+#' an existing survey response file
 #'
 #' @param adj_lic_id licences ids to export in the adjustment file
 #' @param config Configuration list
