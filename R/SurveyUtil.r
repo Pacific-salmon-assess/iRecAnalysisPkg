@@ -144,7 +144,7 @@ validateValueDomain <- function(values,
 #'
 #' NOTE: the column names must be exactly the same between the two tibbles
 #'
-#' @param df The tibble whos columns are to be converted
+#' @param df The tibble whose columns are to be converted
 #' @param df_to_match The tibble with the column type definitions
 #'
 #' @return The df tibble with the column types converted to match the df_to_match tibble
@@ -364,7 +364,7 @@ loadAnalysisConfig <- function(lic_year,
 
   config$survey_start_date <- ymd(config$survey_start_date)
   config$survey_dates <- c(config$survey_start_date,
-                           config$survey_start_date + months(1) - days(1))
+                           config$survey_start_date + months(1, FALSE) - days(1))
 
   if(!is.na(config$period_stratify_date)) {
     if(config$period_stratify_date < getLicYearStartDate(config$annual_expire_date)){
