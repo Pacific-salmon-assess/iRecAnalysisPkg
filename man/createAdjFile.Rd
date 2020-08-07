@@ -15,5 +15,6 @@ createAdjFile(adj_lic_id, config)
 The file name that the adjustment file is created
 }
 \description{
-Create an adjustment file based on specific licence ids
+Create an adjustment file based on specific licence ids and the format of
+an existing survey response file
 }

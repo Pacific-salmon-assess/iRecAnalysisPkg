@@ -366,6 +366,16 @@ loadAnalysisConfig <- function(lic_year,
   config$survey_dates <- c(config$survey_start_date,
                            config$survey_start_date + months(1) - days(1))
 
+  if(!is.na(config$period_stratify_date)) {
+    if(config$period_stratify_date < getLicYearStartDate(config$annual_expire_date)){
+      stop("Period stratify date is before the licence year start date.")
+    }
+
+    if(config$period_stratify_date > config$annual_expire_date){
+      stop("Period stratify date is after the licence year end date.")
+    }
+  }
+
   if (!is.null(config$ekos_filename) && is.null(config$survey_result_filename)) {
     config$survey_result_filename <- config$ekos_filename
   }
@@ -384,7 +394,9 @@ loadAnalysisConfig <- function(lic_year,
   return(config)
 }
 
-#' Converts a Licence year (e.g 2016) into a licence year text.
+#' Get Licence Year Text
+#'
+#' Converts a Licence year (e.g 2016) into a licence year text (e.g. 2016-17).
 #' Commonly used for displaying to users or the folder name of the data
 #'
 #' @param lic_year Licence year vector to convert to licence year text
@@ -401,7 +413,7 @@ getLicenceYearText <- function(lic_year) {
 
 #' Get Survey Year Path
 #'
-#' Get the survey path based on survey parameters.
+#' Get the survey year path based on survey parameters.
 #'
 #' @param lic_year Licence year text (e.g. "2013-14")
 #' @param irec_dir_root Root directory for iRec Analysis
@@ -427,7 +439,7 @@ getSurveyYearPath <- function(lic_year, irec_dir_root = getiRecAnalysisDir()) {
 #' @param year_data_path File path to the year data
 #' @param annual_expire_date Date that the annual licence expires (e.g. March 31st)
 #'
-#' @return An absolute file path where the survey data should be availabe
+#' @return An absolute file path where the survey data should be available
 #'
 #' @importFrom lubridate month
 #'
@@ -456,17 +468,21 @@ getSurveyPath <- function(month_name, year_data_path, annual_expire_date) {
 
 #' Get Truncated Text
 #'
-#' Provides a nicer chunk of text to display to the user by limiting to the first 'show.n' elements
-#' for the vector of 'values' and providing text identifying how many more are in the vector
+#' Provides a formatted chunk of text to display to the user by limiting output to the first
+#' 'show_n' elements for the vector of 'values' and providing text identifying how many more
+#' are in the vector
 #'
 #' @param values A vector of values to turn into text
 #' @param show_n How many elements to show before truncating
-#' @param collapse String used to combine the multiple vaues
+#' @param collapse String used to combine the multiple values
 #'
 #' @return Text with the a vector of values to print to a log file
 #'
 #' @importFrom stringr str_c
 #' @importFrom glue glue
+#'
+#' @examples
+#' getTruncText(letters)
 #'
 getTruncText <- function(values, show_n = 10, collapse = "\n") {
   text <- ""
@@ -478,7 +494,7 @@ getTruncText <- function(values, show_n = 10, collapse = "\n") {
 }
 
 
-#' Convert SPSS labels to text vector
+#' Convert SPSS labels to text
 #'
 #' Columns read from an SPSS file with the haven R package provides labelled columns.
 #' This function converts the labels (that are kind of like factors) into a text column.
@@ -498,7 +514,7 @@ labelText <- function(values) {
   return(text)
 }
 
-#' Set iRecAnalysis Directory
+#' Set iRecAnalysis directory
 #'
 #' @param dir Root directory of iRecAnalysis data
 #'
@@ -508,7 +524,7 @@ setiRecAnalysisDir <- function(dir) {
   log_env$IRecAnlysisDir <- normalizePath(dir)
 }
 
-#' Set iRecAnalysis Directory
+#' Get the iRecAnalysis directory
 #'
 #' @return Root directory of iRecAnalysis data
 #'

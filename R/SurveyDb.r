@@ -94,17 +94,20 @@ getLicenceYearStart <- function(survey_start_date) {
   return(as_date(paste0(year_range[1], "-", LicenceMonthStart, "-01")))
 }
 
-#' Get Licence Year End
+#' Get Licence Year Start Date
 #'
-#' Helper method to get the ending date for the a licence year, inferred from provided date.
+#' Helper method to get the starting date for the a licence year,
+#' inferred from provided licence year end date.
 #'
-#' @param survey_start_date Date a survey is carried out for.
+#' @param lic_end_date Date a licence year ends
 #'
-#' @return A end date for the licence year that the survey_start_date falls within
+#' @return Start date for the licence year
 #'
-getLicenceYearEnd <- function(survey_start_date) {
-  year_range <- getSurveyYears(survey_start_date)
-  return(as_date(paste0(year_range[2], "-", LicenceMonthStart - 1, "-01")))
+#' @importFrom lubridate years days
+#'
+getLicYearStartDate <- function(lic_end_date) {
+  lic_start_date <- lic_end_date - lubridate::years(1) + lubridate::days(1)
+  return(lic_start_date)
 }
 
 #' Get Survey Years
