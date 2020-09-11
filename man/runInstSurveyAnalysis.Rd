@@ -2,21 +2,19 @@
 % Please edit documentation in R/SurveyInstAnalysis.r
 \name{runInstSurveyAnalysis}
 \alias{runInstSurveyAnalysis}
-\title{Run Instantaniace selection survey analysis}
+\title{Run Instantaneous Selection Survey Analysis}
 \usage{
-runInstSurveyAnalysis(config, elic_data, stamp_stratify = FALSE)
+runInstSurveyAnalysis(config, elic_data)
 }
 \arguments{
 \item{config}{Configuration list}
 
 \item{elic_data}{Electronic licence data frame}
-
-\item{stamp_stratify}{Stratify based on salmon stamp}
 }
 \value{
 list with survey analysis results
 }
 \description{
-Analyse the responses to the iRec survey based on instantaniace selection method
+Analysis the responses to the iRec survey based on instantaneous selection method
 integrated into the National Recreational Licence System (NRLS)
 }

@@ -15,5 +15,5 @@ getSurveyYearPath(lic_year, irec_dir_root = getiRecAnalysisDir())
 An absolute file path where the survey year data should be available
 }
 \description{
-Get the survey path based on survey parameters.
+Get the survey year path based on survey parameters.
 }

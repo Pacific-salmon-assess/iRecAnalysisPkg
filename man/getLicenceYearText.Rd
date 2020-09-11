@@ -2,8 +2,7 @@
 % Please edit documentation in R/SurveyUtil.r
 \name{getLicenceYearText}
 \alias{getLicenceYearText}
-\title{Converts a Licence year (e.g 2016) into a licence year text.
-Commonly used for displaying to users or the folder name of the data}
+\title{Get Licence Year Text}
 \usage{
 getLicenceYearText(lic_year)
 }
@@ -14,6 +13,6 @@ getLicenceYearText(lic_year)
 A vector of characters
 }
 \description{
-Converts a Licence year (e.g 2016) into a licence year text.
+Converts a Licence year (e.g 2016) into a licence year text (e.g. 2016-17).
 Commonly used for displaying to users or the folder name of the data
 }

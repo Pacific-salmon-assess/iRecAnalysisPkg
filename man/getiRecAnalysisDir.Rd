@@ -2,7 +2,7 @@
 % Please edit documentation in R/SurveyUtil.r
 \name{getiRecAnalysisDir}
 \alias{getiRecAnalysisDir}
-\title{Set iRecAnalysis Directory}
+\title{Get the iRecAnalysis directory}
 \usage{
 getiRecAnalysisDir()
 }
@@ -10,5 +10,5 @@ getiRecAnalysisDir()
 Root directory of iRecAnalysis data
 }
 \description{
-Set iRecAnalysis Directory
+Get the iRecAnalysis directory
 }

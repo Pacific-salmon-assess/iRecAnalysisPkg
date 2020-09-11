@@ -11,12 +11,17 @@ getTruncText(values, show_n = 10, collapse = "\\n")
 
 \item{show_n}{How many elements to show before truncating}
 
-\item{collapse}{String used to combine the multiple vaues}
+\item{collapse}{String used to combine the multiple values}
 }
 \value{
 Text with the a vector of values to print to a log file
 }
 \description{
-Provides a nicer chunk of text to display to the user by limiting to the first 'show.n' elements
-for the vector of 'values' and providing text identifying how many more are in the vector
+Provides a formatted chunk of text to display to the user by limiting output to the first
+'show_n' elements for the vector of 'values' and providing text identifying how many more
+are in the vector
+}
+\examples{
+getTruncText(letters)
+
 }

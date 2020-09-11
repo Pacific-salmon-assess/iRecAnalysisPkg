@@ -21,7 +21,7 @@ validateValueDomain(
 The values provided
 }
 \description{
-A helper function for validating data within a perdefined set of possible values.
+A helper function for validating data within a pre-defined set of possible values.
 }
 \note{
 If the values vector contains values that are not in the domain vector, then the method calls stop

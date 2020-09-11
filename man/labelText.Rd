@@ -2,7 +2,7 @@
 % Please edit documentation in R/SurveyUtil.r
 \name{labelText}
 \alias{labelText}
-\title{Convert SPSS labels to text vector}
+\title{Convert SPSS labels to text}
 \usage{
 labelText(values)
 }

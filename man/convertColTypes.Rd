@@ -7,7 +7,7 @@
 convertColTypes(df, df_to_match)
 }
 \arguments{
-\item{df}{The tibble whos columns are to be converted}
+\item{df}{The tibble whose columns are to be converted}
 
 \item{df_to_match}{The tibble with the column type definitions}
 }

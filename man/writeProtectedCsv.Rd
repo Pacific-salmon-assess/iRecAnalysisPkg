@@ -12,6 +12,6 @@ writeProtectedCsv(data, file_name)
 \item{file_name}{File name to write CSV file to}
 }
 \description{
-A helper function for writing CSV files and setting them to readonly for protection.
-When writing the file, the file is first set to writable then written over then set to readonly
+A helper function for writing CSV files and setting them to read-only for protection.
+When writing the file, the file is first set to writable then written over then set to read-only
 }

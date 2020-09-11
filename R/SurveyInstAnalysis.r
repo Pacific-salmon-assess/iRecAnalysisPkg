@@ -40,19 +40,18 @@ getNrlsPopSize <- function(elic_data, lic_id_col_name, lic_strata_col_names) {
 #'
 #' @param config Configuration list
 #' @param elic_data Electronic licence data frame
-#' @param stamp_stratify Stratify based on salmon stamp
 #'
 #' @return list with survey analysis results
 #'
 #' @importFrom dplyr summarize_at one_of right_join
 #' @importFrom purrr map2_dfc
 #'
-runInstSurveyAnalysis <- function(config, elic_data, stamp_stratify = FALSE) {
+runInstSurveyAnalysis <- function(config, elic_data) {
   catch_strata_col_names <- c("area", "method", "lodge", "guided",
                               "checkcrabs", "checkprawns", "checkcrabsprawns")
   participate_id <- "survey_access_key"
 
-  if (stamp_stratify) {
+  if (config$stamp_stratify) {
     LicStrataColNames <- c(LicStrataColNames, LicStampStrataColName)
   }
 

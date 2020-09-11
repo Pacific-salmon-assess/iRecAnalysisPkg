@@ -14,7 +14,7 @@ getSurveyPath(month_name, year_data_path, annual_expire_date)
 \item{annual_expire_date}{Date that the annual licence expires (e.g. March 31st)}
 }
 \value{
-An absolute file path where the survey data should be availabe
+An absolute file path where the survey data should be available
 }
 \description{
 Get the survey path based on survey parameters.

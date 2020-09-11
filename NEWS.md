@@ -1,6 +1,10 @@
 # iRecAnalysisPkg 1.1.0
 
-* Add option to stratify estimates by purchase period (e.g. in survey, pre survey, early season, late season)
+* Add option to stratify estimates by salmon stamp purchase periods and (e.g. in survey, early season, late season)
+
+NOTE: New configuration for stratification: `stamp_stratify`, `period_stratify`, and `period_stratify_date`.  
+ * Startify by salmon stamp purchase by setting `stamp_stratify` to `yes`.
+ * Stratify survey results based on licences purchased during the survey by setting `period_stratify` to `yes`.   * Stratify based on early and late season by seting `period_stratify` to `yes` and `period_stratify_date` to the date to split (e.g. 20200701 to identify July 1st 2020 as the start of the late season results)
 
 # iRecAnalysisPkg 1.0.2
 

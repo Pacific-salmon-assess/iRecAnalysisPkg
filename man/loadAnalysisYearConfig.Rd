@@ -11,7 +11,7 @@ loadAnalysisYearConfig(
 )
 }
 \arguments{
-\item{lic_year}{Licence year text to load configuraion for (e.g "2016-17")}
+\item{lic_year}{Licence year text to load configuration for (e.g "2016-17")}
 
 \item{year_config_filename}{Path to the year configuration file relative to survey config}
 

@@ -98,8 +98,8 @@ parseDate <- function(date_text) {
 
 #' Write Protected CSV File
 #'
-#' A helper function for writing CSV files and setting them to readonly for protection.
-#' When writing the file, the file is first set to writable then written over then set to readonly
+#' A helper function for writing CSV files and setting them to read-only for protection.
+#' When writing the file, the file is first set to writable then written over then set to read-only
 #'
 #' @param data Data frame to be written to CSV file
 #' @param file_name File name to write CSV file to
@@ -109,13 +109,13 @@ parseDate <- function(date_text) {
 writeProtectedCsv <- function(data, file_name) {
   Sys.chmod(file_name, mode = "0777", use_umask = TRUE)
   write.csv(data, file = file_name, row.names = FALSE)
-  #Make the file read-only to prevent accidental modificaiton/deletion
+  #Make the file read-only to prevent accidental modification/deletion
   Sys.chmod(file_name, mode = "0444", use_umask = TRUE)
 }
 
 #' Validate Value domains
 #'
-#' A helper function for validating data within a perdefined set of possible values.
+#' A helper function for validating data within a pre-defined set of possible values.
 #'
 #' @param values The data that is to be validated
 #' @param domain The set of valid values that "values" can take on.
@@ -333,6 +333,8 @@ loadAnalysisConfig <- function(lic_year,
     addLogMessages("WARNING- 'stamp_stratify' not set in the config file, assume no salmon stamp stratification.")
   } else if (!is.logical(config$stamp_stratify)) {
     stop(glue("Invalid stamp_stratify value ({config$stamp_stratify}), must be yes/no"))
+  } else {
+    addLogMessages("Stamp stratify set to {config$stamp_stratify}")
   }
 
   if(is.null(config$period_stratify)) {
@@ -340,12 +342,19 @@ loadAnalysisConfig <- function(lic_year,
     addLogMessages("WARNING- 'period_stratify' not set in the config file, assumed no period stratification.")
   } else if (!is.logical(config$period_stratify)) {
     stop(glue("Invalid period_stratify value ({config$period_stratify}), must be yes/no"))
+  } else {
+    addLogMessages("Period stratify set to {config$period_stratify}")
   }
 
-  if(!is.null(config$period_stratify_date)) {
-    config$period_stratify_date <- ymd(config$period_stratify_date)
-  } else {
+  if(is.null(config$period_stratify_date)) {
     config$period_stratify_date <- as.Date(NA)
+    addLogMessages("WARNING- 'period_stratify_date' not set in the config file, assumed no early/late season stratification.")
+  } else {
+    if(config$period_stratify == FALSE) {
+      stop(glue("Can not specify a period_stratify_date with period_stratify not set to YES"))
+    }
+    config$period_stratify_date <- ymd(config$period_stratify_date)
+    addLogMessages("Period stratify date set to {config$period_stratify_date}")
   }
 
   if (!is.null(config$analysis_pre_filename)) {
