@@ -198,7 +198,7 @@ convertColTypes <- function(df, df_to_match) {
 #'
 #' Load the Year configuration file, adjust file names to full paths
 #'
-#' @param lic_year Licence year text to load configuraion for (e.g "2016-17")
+#' @param lic_year Licence year text to load configuration for (e.g "2016-17")
 #' @param year_config_filename Path to the year configuration file relative to survey config
 #' @param irec_dir_root The root directory of the iRec Survey Software
 #'
@@ -282,7 +282,7 @@ loadAnalysisYearConfig <- function(lic_year,
 #'
 #' Load the Year and Survey specific configuration file, adjust file names to full paths
 #'
-#' @param lic_year Licence year text to load configuraion for (e.g "2016-17")
+#' @param lic_year Licence year text to load configuration for (e.g "2016-17")
 #' @param month_name Survey month name to load survey configuration for (e.g. "August")
 #' @param year_config_filename Path to the year configuration file relative to survey config
 #' @param survey_config_filename Survey configuration file name
@@ -328,12 +328,19 @@ loadAnalysisConfig <- function(lic_year,
 
   config$survey_data_path <- survey_data_path
 
+  if(is.null(config$stamp_stratify)) {
+    config$stamp_stratify <- FALSE
+    addLogMessages("WARNING- 'stamp_stratify' not set in the config file, assume no salmon stamp stratification.")
+  } else if (!is.logical(config$stamp_stratify)) {
+    stop(glue("Invalid stamp_stratify value ({config$stamp_stratify}), must be yes/no"))
+  }
+
   if(is.null(config$period_stratify)) {
     config$period_stratify <- FALSE
+    addLogMessages("WARNING- 'period_stratify' not set in the config file, assumed no period stratification.")
   } else if (!is.logical(config$period_stratify)) {
     stop(glue("Invalid period_stratify value ({config$period_stratify}), must be yes/no"))
   }
-
 
   if(!is.null(config$period_stratify_date)) {
     config$period_stratify_date <- ymd(config$period_stratify_date)

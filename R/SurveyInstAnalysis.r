@@ -33,9 +33,9 @@ getNrlsPopSize <- function(elic_data, lic_id_col_name, lic_strata_col_names) {
     rename(lic_total = n)
 }
 
-#' Run Instantaniace selection survey analysis
+#' Run Instantaneous Selection Survey Analysis
 #'
-#' Analyse the responses to the iRec survey based on instantaniace selection method
+#' Analysis the responses to the iRec survey based on instantaneous selection method
 #' integrated into the National Recreational Licence System (NRLS)
 #'
 #' @param config Configuration list
