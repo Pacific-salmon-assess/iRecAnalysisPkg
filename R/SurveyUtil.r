@@ -497,8 +497,10 @@ getSurveyPath <- function(month_name, year_data_path, annual_expire_date) {
 #' @importFrom stringr str_c
 #' @importFrom glue glue
 #'
+#' @export
+#'
 #' @examples
-#' getTruncText(letters)
+#' iRecAnalysisPkg::getTruncText(letters)
 #'
 getTruncText <- function(values, show_n = 10, collapse = "\n") {
   text <- ""

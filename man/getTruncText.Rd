@@ -22,6 +22,6 @@ Provides a formatted chunk of text to display to the user by limiting output to 
 are in the vector
 }
 \examples{
-getTruncText(letters)
+iRecAnalysisPkg::getTruncText(letters)
 
 }
