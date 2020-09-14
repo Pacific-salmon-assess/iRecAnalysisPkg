@@ -2,6 +2,7 @@
 
 export(createAdjFile)
 export(exportInstRawResult)
+export(exportSingleMonthResults)
 export(getLicenceYearText)
 export(getTruncText)
 export(loadAnalysisConfig)

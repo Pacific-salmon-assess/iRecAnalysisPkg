@@ -1,5 +1,6 @@
 # iRecAnalysisPkg 1.1.0
 
+* Implement "Export" for a single survey
 * Remove deprecated `GetTimeStampText()` function, use the `getTimeStampText()` function
 * Add option to stratify estimates by salmon stamp purchase periods and (e.g. in survey, early season, late season)
 

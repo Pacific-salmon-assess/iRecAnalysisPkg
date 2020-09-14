@@ -5,14 +5,13 @@
 #' (licence years 2012 to 2017)
 #'
 #' @param config Survey configuration list
-#' @param elic_data Electronic lience data
+#' @param elic_data Electronic licence data
 #'
 #' @return The list provided as data_list is returned (allows writing multiple worksheets in a pipe)
 #'
 #' @importFrom dplyr summarize_if group_by anti_join transmute
 #'
 runPrePostSurveyAnalysis <- function(config, elic_data) {
-  clearLogMessages()
   result_list <- list()
 
   if (is.null(config$survey_result_filename) == TRUE ||

@@ -9,7 +9,7 @@ runPrePostSurveyAnalysis(config, elic_data)
 \arguments{
 \item{config}{Survey configuration list}
 
-\item{elic_data}{Electronic lience data}
+\item{elic_data}{Electronic licence data}
 }
 \value{
 The list provided as data_list is returned (allows writing multiple worksheets in a pipe)

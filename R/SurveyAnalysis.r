@@ -207,3 +207,74 @@ runUI <- function(analysis_dir, port = 9001) {
 
   shiny::runApp(appDir, display.mode = "normal", port = port)
 }
+
+
+#' Export Single Month Survey Results
+#'
+#' Combine the survey results with licence category information and export to an excel file.
+#' This includes applying all adjustments.
+#'
+#' @param lic_year Licence year (e.g. 2016 for licence year 2016/17)
+#' @param month_name Month to analyze taken from month.name (e.g "February")
+#' @param irec_dir_root Path to the iRec data root directory
+#'
+#' @return The Excel document file name that contains all the month's survey responses
+#'
+#' @export
+#'
+exportSingleMonthResults <- function(lic_year, month_name, irec_dir_root= getiRecAnalysisDir()) {
+  clearLogMessages()
+  lic_year_txt <- getLicenceYearText(lic_year)
+
+  if (month_name %notin% month.name) {
+    stop(glue("The provided month {month_name} is invalid."))
+  }
+
+  config <- loadAnalysisConfig(lic_year_txt, month_name, irec_dir_root = irec_dir_root)
+  addLogMessages("Reading survey response file: ",
+                 basename(config$licence_filename))
+
+  elic_data <-
+    loadLicenceFile(config$licence_filename,
+                    config$annual_date_range[1],
+                    config$annual_date_range[2]) %>%
+    subsetLicences(config$survey_dates[1], config$survey_dates[2])
+
+  if ("stamp_purchase_date" %in% colnames(elic_data)) {
+    elic_data <-
+      elic_data %>%
+      mutate(stamp = if_else(!is.na(stamp_purchase_date) &
+                               ((licence_type == LicTypeAnnual & stamp_purchase_date < config$survey_dates[2]) |
+                                  (licence_type != LicTypeAnnual & stamp_purchase_date <= config$survey_dates[2])),
+                             TRUE,
+                             FALSE))
+  }
+
+  survey_data <-
+    loadSurveyResults(config$survey_result_filename,
+                      config$survey_start_date,
+                      config$exclude_filename,
+                      config$survey_adj_filename) %>%
+    select(-first_name, -last_name, -email)
+
+  if ("survey_access_key" %in% colnames(elic_data)) {
+    survey_data <-
+      elic_data %>%
+      filter(!is.na(survey_access_key)) %>%
+      right_join(survey_data, by = c(survey_access_key = "surveykey"))
+  } else {
+    survey_data <- mergeELicSurveyData(survey_data, elic_data)
+  }
+
+  result_doc <- createWorkbook()
+
+  addXlWorksheet(survey_data, result_doc, "Survey Export")
+  addXlWorksheet(getLogMessages(), result_doc, "Log")
+
+  export_filename <- fs::path(config$survey_data_path,
+                              glue("{month_name}_survey_export_{getTimeStampText()}.xlsx"))
+
+  saveWorkbook(result_doc, file = export_filename, overwrite = FALSE)
+
+  return(export_filename)
+}

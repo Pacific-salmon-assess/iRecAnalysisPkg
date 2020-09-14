@@ -116,8 +116,9 @@ server <- function(input, output) {
   })
 
   export_func <- eventReactive(input$export, {
-    config <- iRecAnalysisPkg::loadAnalysisConfig(input$lic_year, input$month)
-    return("Not Implemented Yet")
+    lic_year <- as.integer(str_sub(input$lic_year,1,4))
+    export_filename <- exportSingleMonthResults(lic_year, input$month)
+    return(export_filename)
   })
 
   output$run_month_analysis_log <- renderText({
@@ -142,7 +143,7 @@ server <- function(input, output) {
 
   output$export_file_log <- renderText({
     export_filename <- export_func()
-    glue("Adjustment file created at: {export_filename}")
+    glue("Export file created at: {export_filename}")
   })
 }
 
