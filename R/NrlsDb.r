@@ -1,7 +1,4 @@
 
-
-
-#'
 #' Gets log-in information and sets up a connection to Oracle.
 #'
 #' @param db_user_name The user name to log into Oracle with
@@ -34,7 +31,6 @@ setupNrlsConn <- function(db_user_name, db_conn_text, db_pass = NULL) {
   return(db_conn)
 }
 
-#'
 #' Gets licence records from NRLS
 #'
 #' @param db_conn Database connection to NRLS
@@ -92,68 +88,67 @@ getNrlsLicences <- function(db_conn, lic_year) {
 #'
 #' @export
 #'
-refreshNrlsLicenceFile <-
-  function(lic_year,
-           config = NULL,
-           irec_dir_root = getiRecAnalysisDir(),
-           password = NULL) {
-    if (is.null(config)) {
-      config <-
-        loadAnalysisYearConfig(lic_year, irec_dir_root = irec_dir_root)
-    }
-
-    if (is.null(config$nrls_user_name) |
-        is.null(config$nrls_db_conn)) {
-      stop(
-        "To refers the NRLS licence file the nrls_user_name and nrls_db_conn must be set in the year_config.yml"
-      )
-    }
-
-    if (is.null(config$licence_filename)) {
-      stop(
-        "To refers the NRLS licence file the licence_filename must be set in the year_config.yml"
-      )
-    }
-
-    print("Connecting to NRLS Database")
-    db_conn <-
-      setupNrlsConn(config$nrls_user_name, config$nrls_db_conn, password)
-
-    print(glue("Retrieving to NRLS Licence records for {lic_year}"))
-    lic_df <- getNrlsLicences(db_conn, lic_year)
-
-    if (file_exists(config$licence_filename)) {
-      #check to see if there is any missing licence IDs compared against the previous file
-      missing_lic_id <-
-        loadNrlsLicenceFile(
-          config$licence_filename,
-          config$annual_date_range[1],
-          config$annual_date_range[2]
-        ) %>%
-        pull(full_licence_id) %>%
-        setdiff(pull(lic_df, full_licence_id))
-
-      if (length(missing_lic_id)) {
-        error_msg <-
-          glue(
-            "{length(missing_lic_id)} licence ids are missing:",
-            getTruncText(missing_lic_id),
-            "To fix this issue you need to remove the previous licence file.",
-            .sep = "\n"
-          )
-        stop(error_msg)
-      }
-    }
-
-    print(glue(
-      "Writing {nrow(lic_df)} licence records to: {config$licence_filename}"
-    ))
-    writeProtectedCsv(lic_df, config$licence_filename)
-
-    dbDisconnect(db_conn)
-
-    return(config$licence_filename)
+refreshNrlsLicenceFile <- function(lic_year,
+                                   config = NULL,
+                                   irec_dir_root = getiRecAnalysisDir(),
+                                   password = NULL) {
+  if (is.null(config)) {
+    config <-
+      loadAnalysisYearConfig(lic_year, irec_dir_root = irec_dir_root)
   }
+
+  if (is.null(config$nrls_user_name) |
+      is.null(config$nrls_db_conn)) {
+    stop(
+      "To refers the NRLS licence file the nrls_user_name and nrls_db_conn must be set in the year_config.yml"
+    )
+  }
+
+  if (is.null(config$licence_filename)) {
+    stop(
+      "To refers the NRLS licence file the licence_filename must be set in the year_config.yml"
+    )
+  }
+
+  print("Connecting to NRLS Database")
+  db_conn <-
+    setupNrlsConn(config$nrls_user_name, config$nrls_db_conn, password)
+
+  print(glue("Retrieving to NRLS Licence records for {lic_year}"))
+  lic_df <- getNrlsLicences(db_conn, lic_year)
+
+  if (file_exists(config$licence_filename)) {
+    #check to see if there is any missing licence IDs compared against the previous file
+    missing_lic_id <-
+      loadNrlsLicenceFile(
+        config$licence_filename,
+        config$annual_date_range[1],
+        config$annual_date_range[2]
+      ) %>%
+      pull(full_licence_id) %>%
+      setdiff(pull(lic_df, full_licence_id))
+
+    if (length(missing_lic_id)) {
+      error_msg <-
+        glue(
+          "{length(missing_lic_id)} licence ids are missing:",
+          getTruncText(missing_lic_id),
+          "To fix this issue you need to remove the previous licence file.",
+          .sep = "\n"
+        )
+      stop(error_msg)
+    }
+  }
+
+  print(glue(
+    "Writing {nrow(lic_df)} licence records to: {config$licence_filename}"
+  ))
+  writeProtectedCsv(lic_df, config$licence_filename)
+
+  dbDisconnect(db_conn)
+
+  return(config$licence_filename)
+}
 
 #' Load NRLS Licence File
 #'

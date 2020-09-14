@@ -1,13 +1,13 @@
 
-#Licence Year that identifes the start of Instantaniace licence selection
+#Licence Year that identifies the start of Instantaneous licence selection
 InstLicYearStart <- 2018
 
 #' Get NRLS Population Sizes
 #'
-#' TODO
+#' Summarize the E-Licence data to population sizes by licence stratification.
 #'
 #' @param elic_data Electronic licence data frame
-#' @param lic_id_col_name Name of colum that identifies the licence ID
+#' @param lic_id_col_name Name of column that identifies the licence ID
 #' @param lic_strata_col_names Column names that are used to stratify for population totals
 #'
 #' @return A data frame population sizes based on strata columns

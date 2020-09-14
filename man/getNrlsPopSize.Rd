@@ -9,7 +9,7 @@ getNrlsPopSize(elic_data, lic_id_col_name, lic_strata_col_names)
 \arguments{
 \item{elic_data}{Electronic licence data frame}
 
-\item{lic_id_col_name}{Name of colum that identifies the licence ID}
+\item{lic_id_col_name}{Name of column that identifies the licence ID}
 
 \item{lic_strata_col_names}{Column names that are used to stratify for population totals}
 }
@@ -17,5 +17,5 @@ getNrlsPopSize(elic_data, lic_id_col_name, lic_strata_col_names)
 A data frame population sizes based on strata columns
 }
 \description{
-TODO
+Summarize the E-Licence data to population sizes by licence stratification.
 }
