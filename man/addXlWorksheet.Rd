@@ -20,6 +20,6 @@ The data table provide, unmodified
 This AddWorksheet function adds a worksheet to a previously create excel document
 }
 \details{
-The data table is the first parameter and it return sthe first parameter unchanged
+The data table is the first parameter and it returns the first parameter unchanged
 so that it is compatible with magrittr "\%>\%"
 }

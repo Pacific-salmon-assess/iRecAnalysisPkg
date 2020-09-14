@@ -283,6 +283,7 @@ surveyTotalVariance <-  function(specific_variance,
 
   sample_size_weight <-
     sample_sizes %>%
+    filter(!is.na(n_effort_days)) %>%
     group_by_at(lic_strata_col_names) %>%
     summarize_at(vars(getSampSizeColNames(sample_sizes)),
                  max,
@@ -474,7 +475,7 @@ getSampSizeColNames <- function(survey_df) {
 #'
 #' This AddWorksheet function adds a worksheet to a previously create excel document
 #'
-#' The data table is the first parameter and it return sthe first parameter unchanged
+#' The data table is the first parameter and it returns the first parameter unchanged
 #' so that it is compatible with magrittr "%>%"
 #'
 #' @param data_table Data that is to be written to the new worksheet

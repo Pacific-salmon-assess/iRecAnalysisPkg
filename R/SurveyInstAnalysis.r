@@ -18,7 +18,7 @@ getNrlsPopSize <- function(elic_data, lic_id_col_name, lic_strata_col_names) {
   all_row_total <- nrow(elic_data)
   pop_size <-
     elic_data %>%
-    select_at(c(lic_id_col_name, LicStrataColNames)) %>%
+    select_at(c(lic_id_col_name, lic_strata_col_names)) %>%
     distinct()
 
   if (nrow(pop_size) < all_row_total) {
@@ -27,7 +27,7 @@ getNrlsPopSize <- function(elic_data, lic_id_col_name, lic_strata_col_names) {
 
   pop_size <-
     pop_size %>%
-    group_by_at(LicStrataColNames) %>%
+    group_by_at(lic_strata_col_names) %>%
     count() %>%
     ungroup() %>%
     rename(lic_total = n)

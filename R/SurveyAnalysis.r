@@ -133,6 +133,17 @@ runAnnualAnalysis <- function(lic_year, irec_dir_root = getiRecAnalysisDir()) {
       elic_data %>%
       subsetLicences(config$survey_dates[1], config$survey_dates[2])
 
+
+    if ("stamp_purchase_date" %in% colnames(elic_data)) {
+      elic_data <-
+        elic_data %>%
+        mutate(stamp = if_else(!is.na(stamp_purchase_date) &
+                                 (licence_type == LicTypeAnnual & stamp_purchase_date < config$survey_dates[2]) |
+                                 (licence_type != LicTypeAnnual & stamp_purchase_date <= config$survey_dates[2]),
+                               TRUE,
+                               FALSE))
+    }
+
     if (lic_year < InstLicYearStart) {
       survey_data <- runPrePostSurveyAnalysis(config, elic_data)
     } else {
