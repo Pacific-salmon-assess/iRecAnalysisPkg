@@ -21,5 +21,5 @@ runSingleMonthAnalysis(
 The Excel document file name that contains all the month's survey data
 }
 \description{
-Run analaysis for single survey month and write results to an Excel file
+Run analysis for single survey month and write results to an Excel file
 }

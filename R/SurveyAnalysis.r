@@ -1,7 +1,7 @@
 
 #' Run Single Month Analysis
 #'
-#' Run analaysis for single survey month and write results to an Excel file
+#' Run analysis for single survey month and write results to an Excel file
 #'
 #' @param lic_year Licence year (e.g. 2016 for licence year 2016/17)
 #' @param month_name Month to analyse take from month.name (e.g "February")

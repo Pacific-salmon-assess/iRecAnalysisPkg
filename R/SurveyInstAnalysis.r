@@ -52,7 +52,9 @@ runInstSurveyAnalysis <- function(config, elic_data) {
   participate_id <- "survey_access_key"
 
   if (config$stamp_stratify) {
-    LicStrataColNames <- c(LicStrataColNames, LicStampStrataColName)
+    lic_strata_col_names <- c(LicStrataColNames, LicStampStrataColName)
+  } else {
+    lic_strata_col_names <- LicStrataColNames
   }
 
   elic_data %<>%
@@ -60,10 +62,10 @@ runInstSurveyAnalysis <- function(config, elic_data) {
                       config$period_stratify,
                       config$period_stratify_date)
 
-  pop_size <- getNrlsPopSize(elic_data, "licence_id", LicStrataColNames)
+  pop_size <- getNrlsPopSize(elic_data, "licence_id", lic_strata_col_names)
 
   elic_data %<>%
-    select_at(c(participate_id, LicStrataColNames))
+    select_at(c(participate_id, lic_strata_col_names))
 
   result_list <- list(licence_summary = pop_size)
 
@@ -120,26 +122,26 @@ runInstSurveyAnalysis <- function(config, elic_data) {
   survey_sum <-
     survey_data %>%
     filter(!is.na(did_not_fish)) %>%
-    group_by_at(c(LicStrataColNames, catch_strata_col_names)) %>%
+    group_by_at(c(lic_strata_col_names, catch_strata_col_names)) %>%
     summarize_at(getCatchColNames(.), sum, na.rm = TRUE)
 
   survey_resp_totals <-
     calcResponseTotals(survey_data,
                        participate_id,
-                       LicStrataColNames)
+                       lic_strata_col_names)
   result_list$survey_specific_variance <-
     surveySpecificVariance(survey_data,
                            survey_resp_totals,
                            lic_uniq_col_name = participate_id,
-                           strata_col_names = LicStrataColNames,
+                           strata_col_names = lic_strata_col_names,
                            non_var_col_names = catch_strata_col_names)
 
   survey_full_result <-
     pop_size  %>%
     full_join(survey_sum,
-              by = LicStrataColNames) %>%
+              by = lic_strata_col_names) %>%
     full_join(survey_resp_totals,
-              by = LicStrataColNames)
+              by = lic_strata_col_names)
 
   samp_size_col_names <- getSampSizeColNames(survey_full_result)
   catch_col_names <- getCatchColNames(survey_full_result)
@@ -197,7 +199,7 @@ runInstSurveyAnalysis <- function(config, elic_data) {
     surveyTotalVariance(result_list$survey_specific_variance,
                         result_list$survey_sample_sizes,
                         pop_size,
-                        LicStrataColNames,
+                        lic_strata_col_names,
                         catch_strata_col_names)
 
   result_list$log <- getLogMessages()
