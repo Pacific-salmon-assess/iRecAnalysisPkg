@@ -7,7 +7,7 @@
 addAnnualXlWorksheet(data_list, data_name, result_doc, worksheet_name)
 }
 \arguments{
-\item{data_list}{with monthly survey resultss}
+\item{data_list}{with monthly survey results}
 
 \item{data_name}{name of data frames to combine}
 
@@ -16,9 +16,9 @@ addAnnualXlWorksheet(data_list, data_name, result_doc, worksheet_name)
 \item{worksheet_name}{The name of the work sheet to add}
 }
 \value{
-The list provided as data_list is returned (allows writing mulitple worksheets in a pipe)
+The list provided as data_list is returned (allows writing multiple worksheets in a pipe)
 }
 \description{
-Helper funciton to combine list of monthly data frames into a single annual data frames
+Helper function to combine list of monthly data frames into a single annual data frames
 and writes it to a provided Excel document as a new worksheet
 }

@@ -33,8 +33,8 @@ runSingleMonthAnalysis <- function(lic_year, month_name, irec_dir_root= getiRecA
     elic_data <-
       elic_data %>%
       mutate(stamp = if_else(!is.na(stamp_purchase_date) &
-                               (licence_type == LicTypeAnnual & stamp_purchase_date < config$survey_dates[2]) |
-                               (licence_type != LicTypeAnnual & stamp_purchase_date <= config$survey_dates[2]),
+                               ((licence_type == LicTypeAnnual & stamp_purchase_date < config$survey_dates[2]) |
+                               (licence_type != LicTypeAnnual & stamp_purchase_date <= config$survey_dates[2])),
                              TRUE,
                              FALSE))
   }
@@ -62,15 +62,15 @@ runSingleMonthAnalysis <- function(lic_year, month_name, irec_dir_root= getiRecA
 
 #' Add Annual Excel Worksheet
 #'
-#' Helper funciton to combine list of monthly data frames into a single annual data frames
+#' Helper function to combine list of monthly data frames into a single annual data frames
 #' and writes it to a provided Excel document as a new worksheet
 #'
-#' @param data_list with monthly survey resultss
+#' @param data_list with monthly survey results
 #' @param data_name name of data frames to combine
 #' @param result_doc An excel document
 #' @param worksheet_name The name of the work sheet to add
 #'
-#' @return The list provided as data_list is returned (allows writing mulitple worksheets in a pipe)
+#' @return The list provided as data_list is returned (allows writing multiple worksheets in a pipe)
 #'
 #' @importFrom purrr map_dfr
 #' @importFrom dplyr arrange
@@ -138,8 +138,8 @@ runAnnualAnalysis <- function(lic_year, irec_dir_root = getiRecAnalysisDir()) {
       elic_data <-
         elic_data %>%
         mutate(stamp = if_else(!is.na(stamp_purchase_date) &
-                                 (licence_type == LicTypeAnnual & stamp_purchase_date < config$survey_dates[2]) |
-                                 (licence_type != LicTypeAnnual & stamp_purchase_date <= config$survey_dates[2]),
+                                 ((licence_type == LicTypeAnnual & stamp_purchase_date < config$survey_dates[2]) |
+                                 (licence_type != LicTypeAnnual & stamp_purchase_date <= config$survey_dates[2])),
                                TRUE,
                                FALSE))
     }
