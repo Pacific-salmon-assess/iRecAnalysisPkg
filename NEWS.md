@@ -2,11 +2,12 @@
 
 * Implement "Export" for a single survey
 * Remove deprecated `GetTimeStampText()` function, use the `getTimeStampText()` function
-* Add option to stratify estimates by salmon stamp purchase periods and (e.g. in survey, early season, late season)
+* Add option to stratify estimates by salmon stamp and purchase periods (e.g. in survey, early season, late season)
 
 NOTE: New configuration for stratification: `stamp_stratify`, `period_stratify`, and `period_stratify_date`.  
  * Stratify by salmon stamp purchase by setting `stamp_stratify` to `yes`.
- * Stratify survey results based on licences purchased during the survey by setting `period_stratify` to `yes`.   * Stratify based on early and late season by seting `period_stratify` to `yes` and `period_stratify_date` to the date to split (e.g. 20200701 to identify July 1st 2020 as the start of the late season results)
+ * Stratify survey results based on licences purchased during the survey by setting `period_stratify` to `yes`.   
+ * Stratify based on early and late season by seting `period_stratify` to `yes` and `period_stratify_date` to the date to split (e.g. 20200701 to identify July 1st 2020 as the start of the late season results)
 
 # iRecAnalysisPkg 1.0.2
 
