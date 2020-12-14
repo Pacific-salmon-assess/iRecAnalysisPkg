@@ -1,3 +1,7 @@
+# iRecAnalysisPkg 1.1.1
+
+* Fix log messages to translate unicode to ascii to prevent excel file corruption
+
 # iRecAnalysisPkg 1.1.0
 
 * Implement "Export" for a single survey

@@ -11,7 +11,7 @@
 #'
 #' @export
 #'
-runSingleMonthAnalysis <- function(lic_year, month_name, irec_dir_root= getiRecAnalysisDir()) {
+runSingleMonthAnalysis <- function(lic_year, month_name, irec_dir_root = getiRecAnalysisDir()) {
   clearLogMessages()
   lic_year_txt <- getLicenceYearText(lic_year)
 
@@ -45,6 +45,10 @@ runSingleMonthAnalysis <- function(lic_year, month_name, irec_dir_root= getiRecA
   }
 
   result_doc <- createWorkbook()
+
+  result_list$log <-
+    result_list$log %>%
+    mutate(log_messages = stri_trans_general(log_messages, "latin-ascii"))
 
   addXlWorksheet(result_list$licence_summary, result_doc, "Licence Summary")
   addXlWorksheet(result_list$survey_summary, result_doc, "Survey Summary")
@@ -99,6 +103,7 @@ addAnnualXlWorksheet <- function(data_list, data_name, result_doc, worksheet_nam
 #' @importFrom purrr map
 #' @importFrom fs dir_exists
 #' @importFrom openxlsx createWorkbook saveWorkbook
+#' @importFrom stringi stri_trans_general
 #'
 runAnnualAnalysis <- function(lic_year, irec_dir_root = getiRecAnalysisDir()) {
   lic_year_txt <- getLicenceYearText(lic_year)
@@ -169,6 +174,11 @@ runAnnualAnalysis <- function(lic_year, irec_dir_root = getiRecAnalysisDir()) {
            year_config)
 
   result_doc <- createWorkbook()
+
+  x$log <-
+    x$log %>%
+    mutate(log_messages = stri_trans_general(log_messages, "latin-ascii"))
+
 
   x %>%
     addAnnualXlWorksheet("licence_summary", result_doc, "Licence Summary") %>%
