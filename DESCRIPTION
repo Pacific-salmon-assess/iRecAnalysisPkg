@@ -28,4 +28,5 @@ Imports: stringr,
          readr,
          tidyr,
          askpass,
-         DBI
+         DBI,
+         stringi
