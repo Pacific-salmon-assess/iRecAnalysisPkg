@@ -2,7 +2,7 @@
 % Please edit documentation in R/SurveyDb.r
 \name{loadSurveyResults}
 \alias{loadSurveyResults}
-\title{Load Survey Results from either EKOS or PRA into a common format.}
+\title{LOad Survey Results}
 \usage{
 loadSurveyResults(
   survey_result_filename,

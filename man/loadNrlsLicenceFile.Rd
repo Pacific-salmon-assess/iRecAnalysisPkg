@@ -17,7 +17,7 @@ loadNrlsLicenceFile(licence_filename, lic_start_date, lic_end_date)
 A data frame with the licence records
 }
 \description{
-The main method used to load the licence data from NRLS system.  This function selects the
+The main method used to load the licence data from NRLS system. This function selects the
 appropriate version of the file format to load based on the survey year
 (starting April 1st)
 }

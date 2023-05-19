@@ -15,7 +15,7 @@ subsetLicences(licence_df, start_survey_date, end_survey_date)
 will be used to exclude licence records that start after this date.}
 }
 \value{
-A data frame with the licence records limited to those aligning witha survey
+A data frame with the licence records limited to those aligning with a survey
 }
 \description{
 Limit licences to those eligible for a survey

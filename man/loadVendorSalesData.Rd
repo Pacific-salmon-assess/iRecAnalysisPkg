@@ -19,5 +19,5 @@ A data frame with the vendor sales summarized to the licence types for before- a
 \description{
 Loads the full set of vendor sales totals by month and licence categories (e.g. annual/term).
 Based on the survey month and the annual licence expire date, the months total sales are summarized into
-those that occured before the month and in the month.
+those that occurred before the month and in the month.
 }

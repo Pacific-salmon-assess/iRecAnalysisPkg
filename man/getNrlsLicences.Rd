@@ -2,7 +2,7 @@
 % Please edit documentation in R/NrlsDb.r
 \name{getNrlsLicences}
 \alias{getNrlsLicences}
-\title{Gets licence records from NRLS}
+\title{Get NRLS Licences}
 \usage{
 getNrlsLicences(db_conn, lic_year)
 }

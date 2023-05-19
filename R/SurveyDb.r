@@ -132,6 +132,8 @@ getSurveyYears <- function(survey_start_date) {
   return(year_range)
 }
 
+#' LOad Survey Results
+#'
 #' Load Survey Results from either EKOS or PRA into a common format.
 #'
 #' @param survey_result_filename Survey result file name
@@ -202,6 +204,8 @@ loadSurveyResults <- function(survey_result_filename,
   return(survey_results)
 }
 
+#' Load EKOS Survey Results
+#'
 #' Load survey results from a EKOS survey file format
 #'
 #' @param ekos_filename File name of the Ekos survey results
@@ -349,6 +353,8 @@ loadEkosSurveyResults <- function(ekos_filename, exclude_lic_id) {
   return(ekos_data)
 }
 
+#' Load PRA Survey Results
+#'
 #' Loads the survey results from PRA and merging the data into common format
 #' for analysis
 #'
@@ -565,7 +571,7 @@ loadPraSurveyResults <- function(survey_result_filename,
 
   }
 
-  #ensure the order of the strata colums, important for column indexing later.
+  #ensure the order of the strata columns, important for column indexing later.
   survey_result <-
     survey_result_strata %>%
     bind_cols(survey_result_catch) %>%
@@ -651,7 +657,7 @@ loadSurveyAdjustments <- function(survey_adj_filename) {
 #' @param end_survey_date The date licence records are cut off at, this date
 #'   will be used to exclude licence records that start after this date.
 #'
-#' @return A data frame with the licence records limited to those aligning witha survey
+#' @return A data frame with the licence records limited to those aligning with a survey
 #'
 subsetLicences <- function(licence_df, start_survey_date, end_survey_date) {
   #Remove licences that start on a date after the provided cutoff date.
@@ -664,10 +670,10 @@ subsetLicences <- function(licence_df, start_survey_date, end_survey_date) {
     licence_df %>%
     filter(licence_type == LicTypeAnnual & start_date < end_survey_date)
 
-  # With Instantance Licence Selection, term licenese are limited to the month
+  # With Instantaneous Licence Selection, term licences are limited to the month
   # that the majority of days occur.  So a licence that starts July 29th will have
   # 3 days in July and 2 days in August.  Because most of the days are in July, the
-  # licence is valid for July only for the purposes of analysing instancance licence
+  # licence is valid for July only for the purposes of analyzing instantaneous licence
   # selection results.
   if (year(getLicenceYearStart(start_survey_date)) >= InstLicYearStart) {
     #the term licence mid point halfway between start and end date must be between survey dates
@@ -695,7 +701,7 @@ subsetLicences <- function(licence_df, start_survey_date, end_survey_date) {
 #'
 #' Loads the full set of vendor sales totals by month and licence categories (e.g. annual/term).
 #'	Based on the survey month and the annual licence expire date, the months total sales are summarized into
-#'   those that occured before the month and in the month.
+#'   those that occurred before the month and in the month.
 #'
 #' @param vendor_sales_filename The file name that has vendors sales by month for all 12 months of the licence year.
 #' @param survey_month The month name of the current month that is being analyzed

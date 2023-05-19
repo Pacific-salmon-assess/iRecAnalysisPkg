@@ -2,7 +2,7 @@
 % Please edit documentation in R/NrlsDb.r
 \name{setupNrlsConn}
 \alias{setupNrlsConn}
-\title{Gets log-in information and sets up a connection to Oracle.}
+\title{Setup NRLS Database Connection}
 \usage{
 setupNrlsConn(db_user_name, db_conn_text, db_pass = NULL)
 }

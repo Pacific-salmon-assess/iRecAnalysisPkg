@@ -2,7 +2,7 @@
 % Please edit documentation in R/SurveyDb.r
 \name{loadEkosSurveyResults}
 \alias{loadEkosSurveyResults}
-\title{Load survey results from a EKOS survey file format}
+\title{Load EKOS Survey Results}
 \usage{
 loadEkosSurveyResults(ekos_filename, exclude_lic_id)
 }

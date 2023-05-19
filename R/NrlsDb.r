@@ -1,4 +1,6 @@
 
+#' Setup NRLS Database Connection
+#'
 #' Gets log-in information and sets up a connection to Oracle.
 #'
 #' @param db_user_name The user name to log into Oracle with
@@ -31,6 +33,8 @@ setupNrlsConn <- function(db_user_name, db_conn_text, db_pass = NULL) {
   return(db_conn)
 }
 
+#' Get NRLS Licences
+#'
 #' Gets licence records from NRLS
 #'
 #' @param db_conn Database connection to NRLS
@@ -152,7 +156,7 @@ refreshNrlsLicenceFile <- function(lic_year,
 
 #' Load NRLS Licence File
 #'
-#' The main method used to load the licence data from NRLS system.  This function selects the
+#' The main method used to load the licence data from NRLS system. This function selects the
 #' appropriate version of the file format to load based on the survey year
 #' (starting April 1st)
 #'

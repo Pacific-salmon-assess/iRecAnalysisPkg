@@ -2,8 +2,7 @@
 % Please edit documentation in R/SurveyDb.r
 \name{loadPraSurveyResults}
 \alias{loadPraSurveyResults}
-\title{Loads the survey results from PRA and merging the data into common format
-for analysis}
+\title{Load PRA Survey Results}
 \usage{
 loadPraSurveyResults(survey_result_filename, exclude_id, strata_col_names)
 }
