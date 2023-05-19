@@ -1,3 +1,8 @@
+# iRecAnalysisPkg 1.1.2
+
+* Add fishing year, month, and day to export and adjustment files for EKOS responses
+
+
 # iRecAnalysisPkg 1.1.1
 
 * Fix log messages to translate unicode to ascii to prevent excel file corruption

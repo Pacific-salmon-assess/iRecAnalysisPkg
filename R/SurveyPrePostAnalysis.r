@@ -25,7 +25,7 @@ runPrePostSurveyAnalysis <- function(config, elic_data) {
                       config$survey_start_date,
                       config$exclude_filename,
                       config$survey_adj_filename) %>%
-    select(-first_name, -last_name, -email)
+    select(-first_name, -last_name, -email, -year, -month, -day)
 
   vendor_sales_data <- loadVendorSalesData(config$vendor_sales_filename,
                                            config$survey_month,

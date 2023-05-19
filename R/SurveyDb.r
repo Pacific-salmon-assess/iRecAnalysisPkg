@@ -214,7 +214,7 @@ loadSurveyResults <- function(survey_result_filename,
 #' @importFrom dplyr mutate_all inner_join vars
 #'
 loadEkosSurveyResults <- function(ekos_filename, exclude_lic_id) {
-  #The number below identifies the maximum total proporation that does not have a Licence ID in the results
+  #The number below identifies the maximum total proportion that does not have a Licence ID in the results
   # For example, 0.01 means that if more then 1% of ekos records is missing licence IDs then throw an error.
   max_prop_miss_id <- 0.01
 
@@ -249,7 +249,9 @@ loadEkosSurveyResults <- function(ekos_filename, exclude_lic_id) {
            DNF_1 = !is.na(DNF_1),
            First_name = trimws(First_name),
            Last_name = trimws(Last_name),
-           AMAIL = trimws(AMAIL)) %>%
+           AMAIL = trimws(AMAIL),
+           REPDAY = as.integer(REPDAY - 1000),
+           REPYEAR = as.integer(REPYEAR)) %>%
     rename(did_not_fish = DNF_1,
            licence_id = Licence_ID,
            first_name = First_name,
@@ -257,8 +259,11 @@ loadEkosSurveyResults <- function(ekos_filename, exclude_lic_id) {
            email = AMAIL,
            area = REPZONE,
            method = REPMETHOD,
+           year = REPYEAR,
+           month = REPMONTH,
+           day = REPDAY,
            effort_days = COMPLETE) %>%
-    mutate_at(vars(area, method), labelText)
+    mutate_at(vars(area, method, month), labelText)
 
   if (!is.null(exclude_lic_id) && length(exclude_lic_id) > 0) {
     ekos_data <-
@@ -293,7 +298,7 @@ loadEkosSurveyResults <- function(ekos_filename, exclude_lic_id) {
     ekos_data_catch <- ekos_data[,c(13,16:ekos_last_catch_col)]
 
     later_col <- which(names(ekos_data) %in% c("effort_days", "did_not_fish"))
-    ekos_data_strata <- ekos_data[,c(3:6,10:11,14:15,later_col)]
+    ekos_data_strata <- ekos_data[,c(3:11,14:15,later_col)]
 
     ekos_data_strata <-
       ekos_data_strata %>%
@@ -304,12 +309,12 @@ loadEkosSurveyResults <- function(ekos_filename, exclude_lic_id) {
     #Past ekos result files do not have the QLODGE or QGUIDE columns
     ekos_data_catch <- ekos_data[,13:338]
     ekos_data_strata <-
-      ekos_data[,c(3:6,10:11,341:342)] %>%
+      ekos_data[,c(3:11,341:342)] %>%
       mutate(lodge = UnspecifiedText,
              guided = UnspecifiedText)
   }
 
-  #ensure the order of the strata colums, important for column indexing later.
+  #ensure the order of the strata columns, important for column indexing later.
   ekos_data_strata <-
     ekos_data_strata %>%
     select(licence_id,
@@ -318,6 +323,9 @@ loadEkosSurveyResults <- function(ekos_filename, exclude_lic_id) {
            email,
            area,
            method,
+           year,
+           month,
+           day,
            guided,
            lodge,
            did_not_fish,
