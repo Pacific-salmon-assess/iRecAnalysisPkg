@@ -267,7 +267,7 @@ exportSingleMonthResults <- function(lic_year, month_name, irec_dir_root= getiRe
                       config$survey_adj_filename) %>%
     select(-first_name, -last_name, -email)
 
-  if ("survey_access_key" %in% colnames(elic_data)) {
+  if ("survey_access_key" %in% colnames(elic_data) && any(!is.na(elic_data$survey_access_key))) {
     survey_data <-
       elic_data %>%
       filter(!is.na(survey_access_key)) %>%

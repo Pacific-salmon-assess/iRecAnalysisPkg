@@ -1,7 +1,7 @@
 # iRecAnalysisPkg 1.1.2
 
 * Add fishing year, month, and day to export and adjustment files for EKOS responses
-
+* Fix export of single month survey results
 
 # iRecAnalysisPkg 1.1.1
 
