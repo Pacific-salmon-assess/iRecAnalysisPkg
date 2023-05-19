@@ -589,7 +589,7 @@ loadPraSurveyResults <- function(survey_result_filename,
 #'
 #' @return A tibble of updated survey data to replace original survey results
 #'
-#' @importFrom dplyr distinct count
+#' @importFrom dplyr distinct count starts_with
 #' @importFrom readr read_csv cols
 #'
 loadSurveyAdjustments <- function(survey_adj_filename) {
@@ -599,7 +599,8 @@ loadSurveyAdjustments <- function(survey_adj_filename) {
     mutate(did_not_fish = case_when("yes" == did_not_fish ~ TRUE,
                                     "no" == did_not_fish ~ FALSE,
                                     TRUE ~ NA)) %>%
-    select_all(str_to_lower)
+    select_all(str_to_lower) %>%
+    select(-starts_with("...")) #Remove empty columns in adj file
 
 
   id_col_name <-
