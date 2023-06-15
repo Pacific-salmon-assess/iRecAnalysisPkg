@@ -4,10 +4,10 @@
 \alias{writeProtectedCsv}
 \title{Write Protected CSV File}
 \usage{
-writeProtectedCsv(data, file_name)
+writeProtectedCsv(df, file_name)
 }
 \arguments{
-\item{data}{Data frame to be written to CSV file}
+\item{df}{Data frame to be written to CSV file}
 
 \item{file_name}{File name to write CSV file to}
 }

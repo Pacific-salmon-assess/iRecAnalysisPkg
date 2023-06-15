@@ -90,14 +90,14 @@ parseDate <- function(date_text) {
 #' A helper function for writing CSV files and setting them to read-only for protection.
 #' When writing the file, the file is first set to writable then written over then set to read-only
 #'
-#' @param data Data frame to be written to CSV file
+#' @param df Data frame to be written to CSV file
 #' @param file_name File name to write CSV file to
 #'
 #' @importFrom utils write.csv
 #'
-writeProtectedCsv <- function(data, file_name) {
+writeProtectedCsv <- function(df, file_name) {
   Sys.chmod(file_name, mode = "0777", use_umask = TRUE)
-  write.csv(data, file = file_name, row.names = FALSE)
+  write.csv(df, file = file_name, row.names = FALSE)
   #Make the file read-only to prevent accidental modification/deletion
   Sys.chmod(file_name, mode = "0444", use_umask = TRUE)
 }
