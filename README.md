@@ -3,6 +3,7 @@
 
 <!-- badges: start -->
 [![R build status](https://github.com/nick-komick/iRecAnalysisPkg/workflows/R-CMD-check/badge.svg)](https://github.com/nick-komick/iRecAnalysisPkg/actions)
+[![R-CMD-check](https://github.com/Pacific-salmon-assess/iRecAnalysisPkg/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Pacific-salmon-assess/iRecAnalysisPkg/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of iRecAnalysisPkg is to analyse the results of catch reporting from the internet survey of recreational licence holders.
