@@ -1,3 +1,7 @@
+# iRecAnalysisPkg 1.1.3
+
+* Fix the NRLS Oracle timezone to EST/EDT.
+
 # iRecAnalysisPkg 1.1.2
 
 * Add fishing year, month, and day to export and adjustment files for EKOS responses

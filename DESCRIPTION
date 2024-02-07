@@ -1,6 +1,6 @@
 Package: iRecAnalysisPkg
 Title: Internet Recreational Catch Reporting Analysis Package
-Version: 1.1.2
+Version: 1.1.3
 Authors@R: 
     person(given = "Nicholas",
            family = "Komick",

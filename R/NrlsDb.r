@@ -49,8 +49,11 @@ setupNrlsConn <- function(db_user_name, db_conn_text, db_pass = NULL) {
 getNrlsLicences <- function(db_conn, lic_year) {
   sql <-
     glue(
-      "SELECT lic_year, lic_no as full_licence_id, survey_access_key, survey_definition_id, survey_start_dt, ",
-      "survey_end_dt, survey_emailed_dtt, purchase_dtt, stamp_purchase_dtt, ",
+      "SELECT lic_year, lic_no as full_licence_id, survey_access_key, survey_definition_id, ",
+      "survey_start_dt, survey_end_dt, ",
+      "from_tz(CAST(survey_emailed_dtt AS TIMESTAMP), '+03:00') survey_emailed_dtt, ",
+      "from_tz(CAST(purchase_dtt AS TIMESTAMP), '+03:00') purchase_dtt, ",
+      "from_tz(CAST(stamp_purchase_dtt AS TIMESTAMP), '+03:00') stamp_purchase_dtt, ",
       "start_dt, expiry_dt, lic_type_id, lic_type_cat_code, paper_yn, age_grp_id, fisher_id ",
       "from NRLS.irec_survey_vw WHERE lic_year = {lic_year}"
     )
