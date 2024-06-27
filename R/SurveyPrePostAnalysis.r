@@ -20,12 +20,21 @@ runPrePostSurveyAnalysis <- function(config, elic_data) {
     stop("No survey result file name provided using the \"survey_result_filename\" parameter.")
   }
 
+
   survey_data <-
     loadSurveyResults(config$survey_result_filename,
                       config$survey_start_date,
                       config$exclude_filename,
-                      config$survey_adj_filename) %>%
-    select(-first_name, -last_name, -email, -year, -month, -day)
+                      config$survey_adj_filename)
+
+
+  remove_col_names <-
+    c("first_name", "last_name", "email", "year", "month", "day") |>
+    intersect(names(survey_data))
+
+  survey_data <-
+    survey_data |>
+    select(-remove_col_names)
 
   vendor_sales_data <- loadVendorSalesData(config$vendor_sales_filename,
                                            config$survey_month,

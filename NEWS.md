@@ -1,3 +1,7 @@
+# iRecAnalysisPkg 1.1.4
+
+* Fix handling of loading older survey data
+
 # iRecAnalysisPkg 1.1.3
 
 * Fix the NRLS Oracle timezone to EST/EDT.
