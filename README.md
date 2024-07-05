@@ -8,7 +8,7 @@
 
 The goal of iRecAnalysisPkg is to analyse the results of catch reporting from the internet survey of recreational licence holders.
 
-For the lastest notes on package modifications check the [NEWS Page](https://github.com/Pacific-salmon-assess/iRecAnalysisPkg/blob/master/NEWS.md)
+For the latest notes on package modifications check the [NEWS Page](https://github.com/Pacific-salmon-assess/iRecAnalysisPkg/blob/master/NEWS.md)
 
 ## Installation
 

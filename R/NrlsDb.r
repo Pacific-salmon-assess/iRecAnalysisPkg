@@ -172,7 +172,7 @@ refreshNrlsLicenceFile <- function(lic_year,
 #' @importFrom dplyr select_all select mutate mutate_at tally pull case_when count
 #' @importFrom magrittr %<>%
 #' @importFrom readr read_csv
-#' @importFrom lubridate dmy
+#' @importFrom lubridate dmy year
 #' @importFrom purrr map_chr
 #' @importFrom stringr str_sub
 #'
@@ -187,6 +187,7 @@ loadNrlsLicenceFile <- function(licence_filename,
     select(
       full_licence_id,
       start_date = start_dt,
+      expiry_date = expiry_dt,
       purchase_date = purchase_dtt,
       stamp_purchase_date = stamp_purchase_dtt,
       lic_type_cat_code,
@@ -194,7 +195,43 @@ loadNrlsLicenceFile <- function(licence_filename,
       survey_definition_id,
       lic_year,
       fisher_id
+    ) |>
+    mutate(term_length = if_else(grepl("[0-9]", substr(lic_type_cat_code, 2, 2)),
+                                 substr(lic_type_cat_code, 2, 2),
+                                 NA_character_),
+           term_length = as.integer(term_length))
+
+  #fix licence records that have bad start dates.  This seems to only be
+  # is term licences, so back calculate from expiry date.
+
+  bad_start_year_df <-
+    lic_data |>
+    filter(lubridate::year(start_date) < lic_year)
+
+  if(nrow(bad_start_year_df)) {
+    #check that there is no non-term licences with bad start dates
+    unfixed_start_year_df <-
+      bad_start_year_df |>
+      filter(is.na(term_length))
+
+    if(nrow(unfixed_start_year_df)) {
+      addLogMessages(
+        "ERROR - {nrow(unfixed_start_year_df)} licences currently are unfixed start dates."
+      )
+    }
+
+    addLogMessages(
+      "WARNING - {nrow(bad_start_year_df) - nrow(unfixed_start_year_df)} licences had their start dates fixed."
     )
+  }
+
+  lic_data <-
+    lic_data |>
+    mutate(start_date = if_else(lubridate::year(start_date) >= lic_year,
+                                lubridate::as_date(start_date),
+                                expiry_date - coalesce(term_length, 0) + 1),
+           term_length = NULL,
+           expiry_date = NULL)
 
   #Parse the partial licence ID, because some historic survey results use it
   lic_split_char <- "-"
